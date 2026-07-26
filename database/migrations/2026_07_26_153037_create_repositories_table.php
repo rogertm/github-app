@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('github_repo_id')->unique();
             $table->string('name');
             $table->string('full_name');
+            $table->string('html_url');
             $table->text('description')->nullable();
             $table->string('git_url');
             $table->string('ssh_url');
