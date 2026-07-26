@@ -30,7 +30,7 @@ return new class extends Migration
             $table->dateTime('github_created_at');
             $table->dateTime('github_updated_at');
             $table->dateTime('github_pushed_at');
-            $table->boolean('is_visible');
+            $table->boolean('is_visible')->default(false);
             $table->integer('sort_order');
             $table->timestamps();
         });
