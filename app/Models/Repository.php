@@ -36,6 +36,7 @@ use Illuminate\Support\Carbon;
     'github_repo_id',
     'name',
     'full_name',
+    'html_url',
     'description',
     'git_url',
     'ssh_url',

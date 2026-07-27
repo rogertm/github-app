@@ -37,8 +37,8 @@ class GithubImportService
                 [
                     'github_user_id'    => $githubUser->id,
                     'name'              => $repoData['name'],
-                    'html_url'          => $userData['html_url'] ?? null,
                     'full_name'         => $repoData['full_name'],
+                    'html_url'          => $userData['html_url'] ?? null,
                     'description'       => $repoData['description'] ?? null,
                     'git_url'           => $repoData['git_url'],
                     'ssh_url'           => $repoData['ssh_url'],

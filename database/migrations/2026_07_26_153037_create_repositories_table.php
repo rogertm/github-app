@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('github_repo_id')->unique();
             $table->string('name');
             $table->string('full_name');
-            $table->string('html_url');
+            $table->string('html_url')->nullable();
             $table->text('description')->nullable();
             $table->string('git_url');
             $table->string('ssh_url');
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->dateTime('github_updated_at');
             $table->dateTime('github_pushed_at');
             $table->boolean('is_visible')->default(false);
-            $table->integer('sort_order');
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }
