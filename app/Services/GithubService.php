@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
 class GithubService
@@ -27,7 +28,7 @@ class GithubService
      */
     public function fetchUser(string $username): array
     {
-        $response = Http::get($this->base_url . '/users/' . $username);
+        $response = $this->client()->get($this->base_url . '/users/' . $username);
 
         $response->throw();
 
@@ -42,10 +43,25 @@ class GithubService
      */
     public function fetchRepositories(string $username): array
     {
-        $response = Http::get($this->base_url . '/users/' . $username . '/repos');
+        $response = $this->client()->get($this->base_url . '/users/' . $username . '/repos');
 
         $response->throw();
 
         return $response->json();
+    }
+
+    /**
+     * Get a pre-configured HTTP client, authenticated with a GitHub
+     * token when one is available in config/services.php.
+     *
+     * @return PendingRequest
+     */
+    protected function client(): PendingRequest
+    {
+        $token = config('services.github.token');
+
+        return $token
+            ? Http::withToken($token)
+            : Http::withHeaders([]);
     }
 }
