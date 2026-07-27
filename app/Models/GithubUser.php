@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
@@ -25,8 +26,25 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
+#[Fillable([
+    'github_login',
+    'github_id',
+    'name',
+    'html_url',
+    'avatar_url',
+    'location',
+    'bio',
+    'public_repos',
+    'followers',
+    'following',
+    'type',
+    'email',
+    'github_created_at',
+    'github_updated_at',
+])]
 class GithubUser extends Model
 {
+
     /**
      * Get the attributes that should be cast.
      *
