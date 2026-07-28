@@ -4,16 +4,23 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\GithubUser;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class GithubUserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the imported GitHub users.
      */
-    public function index()
+    public function index() : Response
     {
-        //
+        return Inertia::render('dashboard/github-users/Index', [
+            'githubUsers' => GithubUser::query()
+                ->withCount('repositories')
+                ->latest()
+                ->get(),
+        ]);
     }
 
     /**
@@ -35,15 +42,17 @@ class GithubUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(GithubUser $githubUser) : Response
     {
-        //
+        return Inertia::render('dashboard/github-users/Show', [
+            'githubUser' => $githubUser->load('repositories'),
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : RedirectResponse
     {
         //
     }
@@ -59,8 +68,12 @@ class GithubUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(GithubUser $githubUser) : RedirectResponse
     {
-        //
+        $githubUser->delete();
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('GitHub user removed.')]);
+
+        return to_route('dashboard.github-users.index');
     }
 }
