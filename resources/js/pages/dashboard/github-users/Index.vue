@@ -60,8 +60,6 @@ const handleDelete = (id: number) => {
 
     <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
 
-        <h1 class="sr-only">Github Users</h1>
-
         <div class="space-y-6">
             <Heading
                 title="Github Users"
