@@ -25,6 +25,7 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+storage/**/
 
 ### PhpStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -204,3 +205,14 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# Agents
+.agents/
+.claude/
+.codex/
+.github/skills/
+.junie/
+.mcp.json
+AGENTS.md
+CLAUDE.md
+boost.json
